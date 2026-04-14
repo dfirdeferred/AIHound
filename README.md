@@ -51,7 +51,7 @@ AIHound doesn't just look for API keys. It scans for:
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/aihound.git
+git clone https://github.com/dfirdeferred/aihound.git
 cd aihound
 
 # Run directly (zero dependencies for core scanning)
