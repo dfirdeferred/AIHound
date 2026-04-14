@@ -57,6 +57,10 @@ AI_ENV_VARS = {
     "XAI_API_KEY": "xAI/Grok API key",
     "PERPLEXITY_API_KEY": "Perplexity API key",
     "FIREWORKS_API_KEY": "Fireworks AI API key",
+    # Ollama
+    "OLLAMA_API_KEY": "Ollama API key (auth proxy)",
+    # LM Studio
+    "LM_STUDIO_API_KEY": "LM Studio API key",
 }
 
 
