@@ -19,7 +19,8 @@ AIHound doesn't just look for API keys. It scans for:
 - **MCP server secrets** — inline tokens, auth headers, and credentials embedded in MCP configurations
 - **AWS credentials** — access keys, secret keys, session tokens, SSO cache
 - **Google Cloud ADC** — application default credentials, service account keys
-- **Environment variables** — 30+ known AI-related env vars
+- **Local AI server exposure** — detects Ollama and LM Studio servers listening on all interfaces without authentication
+- **Environment variables** — 35+ known AI-related env vars
 - **Plaintext config files** — `.env` files, JSON configs with hardcoded secrets
 
 ## Supported Tools
@@ -34,9 +35,11 @@ AIHound doesn't just look for API keys. It scans for:
 | **Cline** | `cline_mcp_settings.json` (plaintext MCP creds) |
 | **Windsurf** | `~/.codeium/windsurf/` config and MCP settings |
 | **ChatGPT Desktop** | App data directories (macOS & Windows) |
+| **Ollama** | `~/.ollama/`, env vars, systemd service, network exposure (port 11434) |
+| **LM Studio** | App config dirs, HF tokens, `.env` files, network exposure (port 1234) |
 | **Amazon Q / AWS** | `~/.aws/credentials`, SSO cache tokens |
 | **Gemini CLI / GCloud** | `.env` files, application default credentials |
-| **Environment Variables** | 30+ AI-related env vars (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, etc.) |
+| **Environment Variables** | 35+ AI-related env vars (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, etc.) |
 
 ## Platform Support
 
@@ -123,8 +126,8 @@ Machine-readable output with full metadata — timestamps, platform info, risk s
 
 | Level | Meaning | Example |
 |---|---|---|
-| **CRITICAL** | Plaintext + world-readable | `0777` credential file on Windows mount |
-| **HIGH** | Plaintext + user-readable only | `0600` credential file |
+| **CRITICAL** | Plaintext + world-readable, or unauthenticated network exposure | `0777` credential file; Ollama API on `0.0.0.0` |
+| **HIGH** | Plaintext + user-readable only, or dangerous server config | `0600` credential file; `OLLAMA_HOST=0.0.0.0` in systemd |
 | **MEDIUM** | OS credential store or env var | Keychain, Credential Manager, `$ANTHROPIC_API_KEY` |
 | **LOW** | Encrypted or not present | VS Code encrypted SQLite storage |
 | **INFO** | Metadata only, no secret value | Env var reference `${GITHUB_TOKEN}`, config flags |
