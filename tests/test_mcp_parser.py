@@ -3,8 +3,8 @@
 import json
 from pathlib import Path
 
-from aicreds.core.mcp import parse_mcp_config
-from aicreds.core.scanner import RiskLevel
+from aihound.core.mcp import parse_mcp_config
+from aihound.core.scanner import RiskLevel
 
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"

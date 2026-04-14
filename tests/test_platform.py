@@ -1,6 +1,6 @@
 """Tests for the platform module."""
 
-from aicreds.core.platform import detect_platform, Platform
+from aihound.core.platform import detect_platform, Platform
 
 
 def test_detect_platform():

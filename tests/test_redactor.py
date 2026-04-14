@@ -1,6 +1,6 @@
 """Tests for the redactor module."""
 
-from aicreds.core.redactor import mask_value, identify_credential_type
+from aihound.core.redactor import mask_value, identify_credential_type
 
 
 def test_mask_short_value():

@@ -18,7 +18,7 @@ keywords = ["security", "credentials", "ai", "llm", "mcp", "aihound"]
 pretty = ["rich>=13.0"]
 
 [project.scripts]
-aihound = "aicreds.cli:main"
+aihound = "aihound.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["aicreds*"]
+include = ["aihound*"]

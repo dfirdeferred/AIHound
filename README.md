@@ -55,7 +55,7 @@ git clone https://github.com/yourusername/aihound.git
 cd aihound
 
 # Run directly (zero dependencies for core scanning)
-python3 -m aicreds
+python3 -m aihound
 
 # Optional: install rich for colored table output
 pip install rich
@@ -65,31 +65,31 @@ pip install rich
 
 ```bash
 # Basic scan — all tools, redacted output
-python3 -m aicreds
+python3 -m aihound
 
 # Verbose mode — show permissions, notes, expiry info
-python3 -m aicreds -v
+python3 -m aihound -v
 
 # Generate HTML report
-python3 -m aicreds --html-file report.html
+python3 -m aihound --html-file report.html
 
 # Generate JSON report
-python3 -m aicreds --json-file report.json
+python3 -m aihound --json-file report.json
 
 # JSON to stdout (for piping)
-python3 -m aicreds --json
+python3 -m aihound --json
 
 # Scan specific tools only
-python3 -m aicreds --tools claude-code envvars
+python3 -m aihound --tools claude-code envvars
 
 # List all available scanners
-python3 -m aicreds --list-tools
+python3 -m aihound --list-tools
 
 # Show actual secret values (requires confirmation)
-python3 -m aicreds --show-secrets
+python3 -m aihound --show-secrets
 
 # Combine outputs
-python3 -m aicreds -v --html-file report.html --json-file report.json
+python3 -m aihound -v --html-file report.html --json-file report.json
 ```
 
 ## Output Formats
@@ -131,11 +131,11 @@ Machine-readable output with full metadata — timestamps, platform info, risk s
 
 ## Adding a New Scanner
 
-Create a new file in `aicreds/scanners/` with a class that extends `BaseScanner`:
+Create a new file in `aihound/scanners/` with a class that extends `BaseScanner`:
 
 ```python
-from aicreds.core.scanner import BaseScanner, ScanResult
-from aicreds.scanners import register
+from aihound.core.scanner import BaseScanner, ScanResult
+from aihound.scanners import register
 
 @register
 class MyToolScanner(BaseScanner):
@@ -155,7 +155,7 @@ The `@register` decorator auto-discovers it. No other files need editing.
 ## Project Structure
 
 ```
-aicreds/
+aihound/
 ├── core/
 │   ├── scanner.py       # BaseScanner, CredentialFinding, ScanResult, enums
 │   ├── platform.py      # OS detection (Linux/macOS/Windows/WSL), path resolution

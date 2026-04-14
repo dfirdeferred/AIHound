@@ -17,7 +17,7 @@ cd aihound
 ## Step 2: Run Your First Scan
 
 ```bash
-python3 -m aicreds
+python3 -m aihound
 ```
 
 You'll see output like this:
@@ -47,7 +47,7 @@ All secret values are automatically redacted. The tool is read-only and doesn't 
 Add `-v` for verbose output — shows file permissions (with human-readable descriptions), ownership, expiry times, and notes:
 
 ```bash
-python3 -m aicreds -v
+python3 -m aihound -v
 ```
 
 ```
@@ -64,7 +64,7 @@ Claude Code CLI  oauth_access_token     plaintext... ~/.claude/.credentials.json
 Creates a self-contained HTML file with the AIHound banner, dark theme, and color-coded risk table:
 
 ```bash
-python3 -m aicreds --html-file report.html
+python3 -m aihound --html-file report.html
 ```
 
 Open `report.html` in your browser. Great for sharing with your team or including in assessments.
@@ -75,16 +75,16 @@ For automation, pipelines, or feeding into other tools:
 
 ```bash
 # Write to file
-python3 -m aicreds --json-file report.json
+python3 -m aihound --json-file report.json
 
 # Pipe to stdout
-python3 -m aicreds --json | jq '.summary'
+python3 -m aihound --json | jq '.summary'
 ```
 
 ### All at once
 
 ```bash
-python3 -m aicreds -v --html-file report.html --json-file report.json
+python3 -m aihound -v --html-file report.html --json-file report.json
 ```
 
 ## Step 5: Scan Specific Tools
@@ -92,7 +92,7 @@ python3 -m aicreds -v --html-file report.html --json-file report.json
 List what's available:
 
 ```bash
-python3 -m aicreds --list-tools
+python3 -m aihound --list-tools
 ```
 
 ```
@@ -113,7 +113,7 @@ Available scanners:
 Scan only specific tools by slug:
 
 ```bash
-python3 -m aicreds --tools claude-code claude-desktop envvars
+python3 -m aihound --tools claude-code claude-desktop envvars
 ```
 
 ## What Does Each Risk Level Mean?
@@ -151,5 +151,5 @@ Continue.dev stores API keys in plaintext in `~/.continue/config.json`. Use the 
 ## Next Steps
 
 - Review findings and fix any CRITICAL/HIGH issues
-- Generate an HTML report for your team: `python3 -m aicreds --html-file report.html`
+- Generate an HTML report for your team: `python3 -m aihound --html-file report.html`
 - Check the full [README](../README.md) for advanced usage and how to add custom scanners
